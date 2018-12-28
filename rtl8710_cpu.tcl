@@ -27,7 +27,8 @@ if { [info exists CPUTAPID] } {
 swj_newdap $_CHIPNAME cpu -irlen 4 -expected-id $_CPUTAPID
 
 set _TARGETNAME $_CHIPNAME.cpu
-target create $_TARGETNAME cortex_m -endian $_ENDIAN -chain-position $_TARGETNAME
+dap create ${_TARGETNAME}_dap -chain-position $_TARGETNAME
+target create $_TARGETNAME cortex_m -endian $_ENDIAN -dap ${_TARGETNAME}_dap
 
 $_TARGETNAME configure -work-area-phys 0x10001000 -work-area-size $_WORKAREASIZE -work-area-backup 0
 
